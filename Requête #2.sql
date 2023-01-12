@@ -61,3 +61,9 @@ UPDATE villes_france_free
 SET ville_nom = REPLACE(ville_nom, '-', ' ') 
 WHERE `ville_nom` LIKE 'SAINT-%';
 
+/* Nom du/des lieux possedant le plus d'habitants, en dehors du village gaulois */
+SELECT  nom_lieu,COUNT(nom_personnage)
+FROM personnage
+INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
+WHERE nom_lieu NOT LIKE 'Village gaulois'
+GROUP BY nom_lieu
