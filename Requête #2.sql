@@ -74,3 +74,11 @@ FROM personnage
 LEFT JOIN boire ON personnage.id_personnage = boire.id_personnage
 WHERE dose_boire IS NULL
 GROUP BY nom_personnage
+
+/*Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique' */
+SELECT nom_personnage
+FROM personnage
+LEFT JOIN boire ON personnage.id_personnage = boire.id_personnage
+LEFT JOIN potion ON boire.id_potion = potion.id_potion
+WHERE LOWER(nom_potion) NOT LIKE 'magique'
+GROUP BY personnage.nom_personnage
