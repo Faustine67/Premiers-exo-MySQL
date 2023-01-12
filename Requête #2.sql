@@ -67,3 +67,10 @@ FROM personnage
 INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
 WHERE nom_lieu NOT LIKE 'Village gaulois'
 GROUP BY nom_lieu
+
+/*Nom des personnages qui n'ont jamais bu aucune potion */
+SELECT nom_personnage
+FROM personnage
+LEFT JOIN boire ON personnage.id_personnage = boire.id_personnage
+WHERE dose_boire IS NULL
+GROUP BY nom_personnage
